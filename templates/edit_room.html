@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="{{ url_for('static', filename="scripts/app.js") }}"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+<body ng-app="myApp">
+    <div class="jumbotron text-center">
+        <h1>Room Edit</h1>
+    </div>
+    <div class="container" ng-controller="roomEditCtrl as vm">
+    
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                
+                <div class="panel panel-default">
+                      <div class="panel-heading">
+                            <h3 class="panel-title">Create Room</h3>
+                      </div>
+                      <div class="panel-body">
+                            <label for="">Room Name</label>
+                            <input type="text" name="" id="1" class="form-control" value="" ng-modal="vm.createRoom.name" required="required" pattern="" title="">
+                            <br>
+                            <button type="button" class="btn btn-success" ng-click="vm.addRoom()">Add</button>
+                      </div>
+                </div>
+                
+            </div>
+
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                
+                <div class="panel panel-default">
+                      <div class="panel-heading">
+                            <h3 class="panel-title">View Room</h3>
+                      </div>
+                      <div class="panel-body">
+                            <label for="">Select Room</label>
+                            <select name="" id="input" class="form-control" ng-model="vm.viewRoom.id" required="required">
+                                <option ng-repeat="x in vm.roomList" value="[[ x.id ]]"> [[ x.name ]] </option>
+                            </select>
+                            <br>
+
+                            <label for="">User in room</label>
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>username</th>
+                                        <th>action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="x in vm.viewRoom.userList ">
+                                        <td>[[ x.username ]]</td>
+                                        <td> 
+                                            <button type="button" class="btn btn-danger" ng-click="vm.deleteUserInRoom(x.id)">Delete</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                      </div>
+                </div>
+                
+            </div>
+
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                
+                <div class="panel panel-default">
+                      <div class="panel-heading">
+                            <h3 class="panel-title">Add user to room</h3>
+                      </div>
+                      <div class="panel-body">
+                            <label for="">Select Room</label>
+                            <select name="" id="input" class="form-control" required="required">
+                                <option value=""></option>
+                            </select>
+                            <br>
+
+                            <label for="">Select User</label>
+                            <select name="" id="input" class="form-control" required="required">
+                                <option value=""></option>
+                            </select>
+                            <br>
+                            
+                            <button type="button" class="btn btn-success">Add</button>
+                            
+                      </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</body>
